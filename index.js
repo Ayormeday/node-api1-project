@@ -50,19 +50,16 @@ function updateUserById(req, res) {
   if (!userDetails.name || !userDetails.bio) {
     res
       .status(400)
-      .json({ errorMessage: 'Please provide name and bio for the user.' });
-  }
-  else {
+      .json({ errorMessage: "Please provide name and bio for the user." });
+  } else {
     db.update(id, userDetails)
-    .then(user => {
-      res.status(200).json(user);
-    })
-    .catch(error => {
-      res.json(errorMessage, error);
-    });
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(error => {
+        res.json(errorMessage, error);
+      });
   }
-
-  
 }
 
 function getAllUsers(req, res) {
@@ -72,8 +69,10 @@ function getAllUsers(req, res) {
     })
     .catch(() => {
       res
-      .status(500)
-      .json({ errorMessage: "The users information could not be retrieved."  });
+        .status(500)
+        .json({
+          errorMessage: "The users information could not be retrieved."
+        });
     });
 }
 
